@@ -59,6 +59,10 @@ try {
         Invoke-Git @("init") | Out-Null
     }
 
+    if ($IsWindows -or $env:OS -eq "Windows_NT") {
+        Invoke-Git @("config", "http.sslBackend", "schannel") | Out-Null
+    }
+
     Invoke-Git @("checkout", "-B", $Branch) | Out-Null
 
     $email = (Invoke-Git @("config", "--get", "user.email") -AllowFailure).Output
