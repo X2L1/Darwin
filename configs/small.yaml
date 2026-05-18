@@ -1,0 +1,36 @@
+# Darwin – small / demo configuration (fast iteration, CPU-friendly)
+
+model:
+  vocab_size: 8000
+  max_seq_len: 512
+  n_layers: 4
+  n_heads: 4
+  n_kv_heads: 4
+  d_model: 128
+  d_ff: 512
+  dropout: 0.1
+
+training:
+  learning_rate: 1.0e-3
+  batch_size: 8
+  warmup_steps: 200
+  max_steps: 5000
+  save_every: 500
+  eval_every: 250
+  output_dir: data/checkpoints_small
+
+improvement_interval_seconds: 300
+max_parallel_agents: 2
+proposal_budget: 5
+
+max_code_execution_time_seconds: 15
+allow_network_in_sandbox: false
+require_human_review_above_risk: 0.8
+
+enabled_domains:
+  - code
+  - prompting
+  - research
+
+data_dir: data
+log_dir: data/logs
